@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView;
     private Button btn;
     private MainActivityViewModel mainActivityViewModel;
-
+ // test
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
