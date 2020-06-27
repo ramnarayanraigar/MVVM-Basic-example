@@ -27,4 +27,11 @@
         android:layout_below="@id/btn"
         android:layout_marginTop="8dp"/>
 
+    <Button
+        android:id="@+id/retro_demo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="retrofit Activity"
+        android:layout_below="@id/volley_demo"
+        android:layout_marginTop="8dp"/>
 </RelativeLayout>

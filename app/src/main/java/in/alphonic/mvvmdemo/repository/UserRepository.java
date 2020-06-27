@@ -5,7 +5,6 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
@@ -20,7 +19,6 @@ import in.alphonic.mvvmdemo.model.VolleyDemo;
 import in.alphonic.mvvmdemo.network.NetWorkManager;
 import in.alphonic.mvvmdemo.network.NetWorkResponseListener;
 import in.alphonic.mvvmdemo.utility.Constants;
-import in.alphonic.mvvmdemo.utility.Utility;
 
 /* Repository is used for get data from
        web service and database and send this data to viewmodel */
@@ -31,14 +29,14 @@ public class UserRepository {
     /* Singleton Pattern */
     public static UserRepository getInstance() {
         if (userRepository == null)
-            userRepository = new UserRepository() ;
+            userRepository = new UserRepository();
 
         return userRepository;
     }
 
     /* Remote and Local database operation or business logic */
     public LiveData<User> getUser() {
-         MutableLiveData<User> mutableLiveData = new MutableLiveData<>();
+        MutableLiveData<User> mutableLiveData = new MutableLiveData<>();
 
         User user = new User();
         Random random = new Random();
@@ -85,11 +83,11 @@ public class UserRepository {
 
                     @Override
                     public void onError(VolleyError volleyError, String message) {
-                       if (mutableLiveData1 == null) {
-                           mutableLiveData.setValue(null);
-                       } else {
-                           mutableLiveData.postValue(null);
-                       }
+                        if (mutableLiveData1 == null) {
+                            mutableLiveData.setValue(null);
+                        } else {
+                            mutableLiveData.postValue(null);
+                        }
 
                     }
                 });

@@ -36,6 +36,10 @@ public class NetWorkManager {
     private static NetWorkManager netWorkManager;
     private ProgressDialog progressDialog;
 
+    private NetWorkManager() {
+
+    }
+
     public static synchronized void getInstance(Context context) {
         if (netWorkManager == null) {
             netWorkManager = new NetWorkManager();

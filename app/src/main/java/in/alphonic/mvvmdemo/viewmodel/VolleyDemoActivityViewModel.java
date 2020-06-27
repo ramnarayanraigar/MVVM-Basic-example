@@ -6,8 +6,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.google.gson.JsonObject;
-
 import org.json.JSONObject;
 
 import in.alphonic.mvvmdemo.model.VolleyDemo;
@@ -22,7 +20,7 @@ public class VolleyDemoActivityViewModel extends ViewModel {
     }
 
     public void updateAppInfo(Context context, JSONObject jsonObject, String TAG, boolean isProgressBar) {
-       repository = UserRepository.getInstance();
-        mutableLiveData = (MutableLiveData<VolleyDemo>) repository.updateAppInfo(mutableLiveData,context, jsonObject, TAG, isProgressBar);
+        repository = UserRepository.getInstance();
+        mutableLiveData = (MutableLiveData<VolleyDemo>) repository.updateAppInfo(mutableLiveData, context, jsonObject, TAG, isProgressBar);
     }
 }

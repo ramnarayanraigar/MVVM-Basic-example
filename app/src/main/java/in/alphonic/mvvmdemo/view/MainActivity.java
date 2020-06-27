@@ -19,7 +19,7 @@ import in.alphonic.mvvmdemo.viewmodel.MainActivityViewModel;
 
 public class MainActivity extends AppCompatActivity {
     private TextView textView;
-    private Button btn, volleyDemo;
+    private Button btn, volleyDemo, retroFitDemo;
     private MainActivityViewModel mainActivityViewModel;
 
     private Context mContext;
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.text_name);
         btn = findViewById(R.id.btn);
         volleyDemo = findViewById(R.id.volley_demo);
+        retroFitDemo = findViewById(R.id.retro_demo);
 
         mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
 
@@ -57,6 +58,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, VolleyDemoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        retroFitDemo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, RetrofitExampleActivity.class);
                 startActivity(intent);
             }
         });

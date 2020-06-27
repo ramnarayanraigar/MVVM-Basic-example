@@ -47,4 +47,10 @@ dependencies {
     // gson library
     implementation 'com.google.code.gson:gson:2.8.6'
 
+    // retrofit library
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.0'
+
+    // login interceptor
+    implementation('com.squareup.okhttp3:logging-interceptor:4.3.1')
 }
