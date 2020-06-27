@@ -11,7 +11,7 @@ public class MainActivityViewModel extends ViewModel {
     private MutableLiveData<User> userMutableLiveData;
     private UserRepository userRepository;
 
-    /* Set data by repositry */
+    /* Set data by repository */
     public void queryRepo() {
         userRepository = UserRepository.getInstance();
         userMutableLiveData = (MutableLiveData<User>) userRepository.getUser();

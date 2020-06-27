@@ -5,6 +5,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,16 +19,22 @@ import in.alphonic.mvvmdemo.viewmodel.MainActivityViewModel;
 
 public class MainActivity extends AppCompatActivity {
     private TextView textView;
-    private Button btn;
+    private Button btn, volleyDemo;
     private MainActivityViewModel mainActivityViewModel;
+
+    private Context mContext;
  // test 123
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mContext = this;
+
         textView = findViewById(R.id.text_name);
         btn = findViewById(R.id.btn);
+        volleyDemo = findViewById(R.id.volley_demo);
+
         mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
 
         mainActivityViewModel.queryRepo();
@@ -42,6 +50,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mainActivityViewModel.updateUser();
+            }
+        });
+
+        volleyDemo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, VolleyDemoActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -16,6 +16,15 @@
         android:id="@+id/btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:text="Update"/>
+
+    <Button
+        android:id="@+id/volley_demo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Volley Activity"
+        android:layout_below="@id/btn"
+        android:layout_marginTop="8dp"/>
 
 </RelativeLayout>
