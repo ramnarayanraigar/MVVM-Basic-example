@@ -14,11 +14,17 @@ import org.json.JSONObject;
 import java.util.Random;
 
 import in.alphonic.mvvmdemo.api.APIUrls;
+import in.alphonic.mvvmdemo.model.Success;
 import in.alphonic.mvvmdemo.model.User;
 import in.alphonic.mvvmdemo.model.VolleyDemo;
 import in.alphonic.mvvmdemo.network.NetWorkManager;
 import in.alphonic.mvvmdemo.network.NetWorkResponseListener;
+import in.alphonic.mvvmdemo.network.RetrofitNetWorkManager;
 import in.alphonic.mvvmdemo.utility.Constants;
+import in.alphonic.mvvmdemo.utility.LogCustom;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /* Repository is used for get data from
        web service and database and send this data to viewmodel */
@@ -93,5 +99,42 @@ public class UserRepository {
                 });
 
         return mutableLiveData;
+    }
+
+    public LiveData<Success> getAppSettings(MutableLiveData<Success> mutableLiveData) {
+        MutableLiveData<Success> retrofitDemoMutableLiveData;
+
+        if (mutableLiveData == null) {
+            retrofitDemoMutableLiveData = new MutableLiveData<>();
+        } else {
+            retrofitDemoMutableLiveData = mutableLiveData;
+        }
+
+        APIUrls.EndPoint endPoint = RetrofitNetWorkManager.getRetrofitInstance().create(APIUrls.EndPoint.class);
+        Call<Success> volleyDemoCall = endPoint.checkMobileExists("token", "8619713127");
+
+        volleyDemoCall.enqueue(new Callback<Success>() {
+            @Override
+            public void onResponse(Call<Success> call, Response<Success> response) {
+                if (response.isSuccessful()) {
+                    if (mutableLiveData == null) {
+                        retrofitDemoMutableLiveData.setValue(response.body());
+                    } else {
+                        retrofitDemoMutableLiveData.postValue(response.body());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Success> call, Throwable t) {
+                if (mutableLiveData == null) {
+                    retrofitDemoMutableLiveData.setValue(null);
+                } else {
+                    retrofitDemoMutableLiveData.postValue(null);
+                }
+            }
+        });
+
+        return retrofitDemoMutableLiveData;
     }
 }

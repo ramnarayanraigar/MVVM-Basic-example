@@ -1,6 +1,8 @@
 package in.alphonic.mvvmdemo.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 import android.view.View;
@@ -14,13 +16,18 @@ import in.alphonic.mvvmdemo.api.APIUrls;
 import in.alphonic.mvvmdemo.model.RetrofitDemo;
 import in.alphonic.mvvmdemo.model.Success;
 import in.alphonic.mvvmdemo.network.RetrofitNetWorkManager;
+import in.alphonic.mvvmdemo.utility.LogCustom;
+import in.alphonic.mvvmdemo.viewmodel.RetrofitExampleViewModel;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RetrofitExampleActivity extends AppCompatActivity {
+    private static final String TAG = RetrofitExampleActivity.class.getSimpleName();
     private TextView text;
     private Button btn;
+
+    private RetrofitExampleViewModel retrofitExampleViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +37,27 @@ public class RetrofitExampleActivity extends AppCompatActivity {
         text = findViewById(R.id.text);
         btn = findViewById(R.id.btn);
 
+        retrofitExampleViewModel = ViewModelProviders.of(this).get(RetrofitExampleViewModel.class);
+
+        retrofitExampleViewModel.appSettings();
+
+        retrofitExampleViewModel.getAppSettings().observe(this, new Observer<Success>() {
+            @Override
+            public void onChanged(Success success) {
+                text.setText(success.getStatus());
+
+                LogCustom.i(TAG, success.getStatus());
+            }
+        });
+
         apiCall();
        btn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
               // apiCall();
-               apiCallPost();
+             //  apiCallPost();
+
+               retrofitExampleViewModel.appSettings();
            }
        });
     }
